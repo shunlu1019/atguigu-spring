@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="userDaoImpl" class="com.atguigu.spring.dao.UserDaoImpl" />
+    <bean id="userService" class="com.atguigu.spring.service.UserService">
+        <property name="userDao" ref="userDaoImpl"/>
+    </bean>
+<!--    <bean id="order" class="Order">-->
+<!--&lt;!&ndash;        <property name="name" value="小明"></property>&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="address" value="中国北京"></property>&ndash;&gt;-->
+<!--        <constructor-arg name="name" value="电脑"></constructor-arg>-->
+<!--        <constructor-arg name="address" value="中国"/>-->
+<!--    </bean>-->
+
+    <bean id="order" class="com.atguigu.spring.dao.Order" p:name="键盘" p:address="辽宁"/>
+
+    <bean id="emp" class="com.atguigu.spring.bean.Emp">
+        <property name="ename"  value="张三"></property>
+        <property name="gender" value="男"></property>
+<!--        <property name="dept" >-->
+<!--            <bean id="dept" class="com.atguigu.spring.bean.Dept">-->
+<!--                <property name="dname" value="技术部"></property>-->
+<!--            </bean>-->
+<!--        </property>-->
+        <property name="dept" ref="dept"/>
+        <property name="dept.dname" value="财务部"/>
+    </bean>
+
+    <bean id="dept" class="com.atguigu.spring.bean.Dept">
+        <property name="dname" value="技术部"></property>
+    </bean>
+
+    <bean id="stu" class="com.atguigu.spring.collectiontype.Stu">
+        <property name="score">
+            <array>
+                <value>Chinese</value>
+                <value>Engish</value>
+                <value>Math</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>list1</value>
+                <value>list2</value>
+                <value>list3</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="key1" value="value1"/>
+                <entry key="key3" value="value3"/>
+                <entry key="key2" value="value2"/>
+
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <value>set1</value>
+                <value>set2</value>
+                <value>set3</value>
+            </set>
+        </property>
+        <property name="bookList">
+            <list>
+                <ref bean="book1"/>
+                <ref bean="book2"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="book" class="com.atguigu.spring.collectiontype.Book">
+        <property name="bookName"  value="武侠"></property>
+        <property name="bookList" ref="bookList">
+        </property>
+    </bean>
+    <bean id="book1" class="com.atguigu.spring.collectiontype.Book">
+        <property name="bookName"  value="java"></property>
+        <property name="bookList">
+            <ref bean="bookList"></ref>
+        </property>
+    </bean>
+    <bean id="book2" class="com.atguigu.spring.collectiontype.Book">
+        <property name="bookName"  value="C语言"></property>
+    </bean>
+
+    <util:list id="bookList">
+        <value>笑傲江湖</value>
+        <value>天龙八部</value>
+        <value>射雕英雄传</value>
+    </util:list>
+
+</beans>
