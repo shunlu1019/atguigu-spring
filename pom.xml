@@ -47,6 +47,7 @@
             <version>5.3.10</version>
         </dependency>
 
+        <!--数据库和事务支持依赖-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
